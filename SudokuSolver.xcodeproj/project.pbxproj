@@ -13,6 +13,8 @@
 		5B7E9B182581637A00E5AD53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E9B172581637A00E5AD53 /* Preview Assets.xcassets */; };
 		5B7E9B212581639D00E5AD53 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E9B202581639D00E5AD53 /* README.md */; };
 		5B9F07972582477B00BBA964 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F07962582477B00BBA964 /* ImagePicker.swift */; };
+		5B9F079B25824AFA00BBA964 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9F079A25824AF900BBA964 /* opencv2.framework */; };
+		5B9F079E25824C0900BBA964 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F079D25824C0800BBA964 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		5B7E9B192581637A00E5AD53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B7E9B202581639D00E5AD53 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5B9F07962582477B00BBA964 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		5B9F079A25824AF900BBA964 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = Frameworks/opencv2.framework; sourceTree = "<group>"; };
+		5B9F079D25824C0800BBA964 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9F079B25824AFA00BBA964 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +48,7 @@
 				5B7E9B202581639D00E5AD53 /* README.md */,
 				5B7E9B0F2581637900E5AD53 /* SudokuSolver */,
 				5B7E9B0E2581637900E5AD53 /* Products */,
+				5B9F079925824AF900BBA964 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +69,7 @@
 				5B7E9B142581637A00E5AD53 /* Assets.xcassets */,
 				5B7E9B192581637A00E5AD53 /* Info.plist */,
 				5B7E9B162581637A00E5AD53 /* Preview Content */,
+				5B9F079D25824C0800BBA964 /* Settings.bundle */,
 			);
 			path = SudokuSolver;
 			sourceTree = "<group>";
@@ -73,6 +80,14 @@
 				5B7E9B172581637A00E5AD53 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5B9F079925824AF900BBA964 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B9F079A25824AF900BBA964 /* opencv2.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9F079E25824C0900BBA964 /* Settings.bundle in Resources */,
 				5B7E9B212581639D00E5AD53 /* README.md in Resources */,
 				5B7E9B182581637A00E5AD53 /* Preview Assets.xcassets in Resources */,
 				5B7E9B152581637A00E5AD53 /* Assets.xcassets in Resources */,
@@ -280,6 +296,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SudokuSolver/Preview Content\"";
 				DEVELOPMENT_TEAM = DHBK22HHBU;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = SudokuSolver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -302,6 +322,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SudokuSolver/Preview Content\"";
 				DEVELOPMENT_TEAM = DHBK22HHBU;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = SudokuSolver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
