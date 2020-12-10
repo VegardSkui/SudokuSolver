@@ -21,6 +21,7 @@ private:
     cv::Point FindLargestConnectedComponent(Mat image);
     void HighlightComponent(Mat image, cv::Point seed_point);
     void DrawLine(Vec2f line, Mat image, Scalar rgb);
+    void MergeNearbyLines(std::vector<Vec2f> *lines, Mat image);
 };
 
 #endif /* BoardExtractor_hpp */
