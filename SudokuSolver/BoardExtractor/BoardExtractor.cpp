@@ -53,11 +53,16 @@ Mat BoardExtractor::ExtractBoard(Mat image) {
     Vec2f top_edge, bottom_edge, left_edge, right_edge;
     FindEdges(&lines, &top_edge, &bottom_edge, &left_edge, &right_edge);
 
-    // Draw the board edges
-    DrawLine(top_edge, border_image, CV_RGB(0,0,255));
-    DrawLine(right_edge, border_image, CV_RGB(0,0,255));
-    DrawLine(bottom_edge, border_image, CV_RGB(0,0,255));
-    DrawLine(left_edge, border_image, CV_RGB(0,0,255));
+    // Find the points giving the four corners of the board
+    Point top_left = Intersection(top_edge, left_edge);
+    Point top_right = Intersection(top_edge, right_edge);
+    Point bottom_left = Intersection(bottom_edge, left_edge);
+    Point bottom_right = Intersection(bottom_edge, right_edge);
+
+    circle(border_image, top_left, 15, CV_RGB(0,0,255));
+    circle(border_image, top_right, 15, CV_RGB(0,0,255));
+    circle(border_image, bottom_left, 15, CV_RGB(0,0,255));
+    circle(border_image, bottom_right, 15, CV_RGB(0,0,255));
 
     return border_image;
 }
@@ -238,4 +243,17 @@ void BoardExtractor::FindEdges(std::vector<Vec2f> *lines, Vec2f *top_edge, Vec2f
             }
         }
     }
+}
+
+// Calculates the intersection point of two lines.
+Point BoardExtractor::Intersection(Vec2f line1, Vec2f line2) {
+    float p1 = line1[0], p2 = line2[0];
+    float θ1 = line1[1], θ2 = line2[1];
+
+    // Calculate the coordinates of the intersection, the formulae is found by
+    // solving the system of equations given by the two lines in normal form
+    float x = 1/sin(θ1 - θ2) * (p2*sin(θ1) - p1*sin(θ2));
+    float y = 1/sin(θ1 - θ2) * (p1*cos(θ2) - p2*cos(θ1));
+
+    return Point(x, y);
 }

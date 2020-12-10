@@ -23,6 +23,7 @@ private:
     void DrawLine(Vec2f line, Mat image, Scalar rgb);
     void MergeNearbyLines(std::vector<Vec2f> *lines, Mat image);
     void FindEdges(std::vector<Vec2f> *lines, Vec2f *top_edge, Vec2f *bottom_edge, Vec2f *left_edge, Vec2f *right_edge);
+    cv::Point Intersection(Vec2f line1, Vec2f line2);
 };
 
 #endif /* BoardExtractor_hpp */
