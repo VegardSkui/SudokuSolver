@@ -20,6 +20,7 @@ public:
 private:
     cv::Point FindLargestConnectedComponent(Mat image);
     void HighlightComponent(Mat image, cv::Point seed_point);
+    void DrawLine(Vec2f line, Mat image, Scalar rgb);
 };
 
 #endif /* BoardExtractor_hpp */

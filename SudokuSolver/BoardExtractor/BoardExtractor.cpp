@@ -43,6 +43,15 @@ Mat BoardExtractor::ExtractBoard(Mat image) {
     Point largest_component_seed = FindLargestConnectedComponent(border_image);
     HighlightComponent(border_image, largest_component_seed);
 
+    // Detect lines using a Hough transform
+    std::vector<Vec2f> lines;
+    HoughLines(border_image, lines, 1, CV_PI/180, 200);
+
+    // Draw all lines
+    for (int i = 0; i < lines.size(); i++) {
+        DrawLine(lines[i], border_image, CV_RGB(0,0,128));
+    }
+
     return border_image;
 }
 
@@ -97,4 +106,17 @@ void BoardExtractor::HighlightComponent(Mat image, Point seed_point) {
             floodFill(image, Point(x,y), CV_RGB(0,0,0));
         }
     }
+}
+
+// Draws a line on an image with the given color.
+void BoardExtractor::DrawLine(Vec2f line, Mat image, Scalar rgb) {
+    Point pt1, pt2;
+    if (line[1] != 0) {
+        pt1 = Point(0, line[0]/sin(line[1]));
+        pt2 = Point(image.size().width, (line[0] - image.size().width*cos(line[1]))/sin(line[1]));
+    } else {
+        pt1 = Point(line[0], 0);
+        pt2 = Point(line[0], image.size().height);
+    }
+    cv::line(image, pt1, pt2, rgb);
 }
