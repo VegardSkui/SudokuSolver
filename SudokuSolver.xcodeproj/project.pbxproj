@@ -12,6 +12,7 @@
 		5B7E9B152581637A00E5AD53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E9B142581637A00E5AD53 /* Assets.xcassets */; };
 		5B7E9B182581637A00E5AD53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E9B172581637A00E5AD53 /* Preview Assets.xcassets */; };
 		5B7E9B212581639D00E5AD53 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E9B202581639D00E5AD53 /* README.md */; };
+		5B9F07972582477B00BBA964 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F07962582477B00BBA964 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		5B7E9B172581637A00E5AD53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B7E9B192581637A00E5AD53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B7E9B202581639D00E5AD53 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5B9F07962582477B00BBA964 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				5B7E9B102581637900E5AD53 /* SudokuSolverApp.swift */,
 				5B7E9B122581637900E5AD53 /* ContentView.swift */,
+				5B9F07962582477B00BBA964 /* ImagePicker.swift */,
 				5B7E9B142581637A00E5AD53 /* Assets.xcassets */,
 				5B7E9B192581637A00E5AD53 /* Info.plist */,
 				5B7E9B162581637A00E5AD53 /* Preview Content */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9F07972582477B00BBA964 /* ImagePicker.swift in Sources */,
 				5B7E9B132581637900E5AD53 /* ContentView.swift in Sources */,
 				5B7E9B112581637900E5AD53 /* SudokuSolverApp.swift in Sources */,
 			);
