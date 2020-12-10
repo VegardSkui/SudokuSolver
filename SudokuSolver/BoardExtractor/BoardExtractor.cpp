@@ -49,10 +49,15 @@ Mat BoardExtractor::ExtractBoard(Mat image) {
 
     MergeNearbyLines(&lines, image);
 
-    // Draw remaining lines after merge
-    for (int i = 0; i < lines.size(); i++) {
-        DrawLine(lines[i], border_image, CV_RGB(0,0,128));
-    }
+    // Detect the lines giving the edges of the board
+    Vec2f top_edge, bottom_edge, left_edge, right_edge;
+    FindEdges(&lines, &top_edge, &bottom_edge, &left_edge, &right_edge);
+
+    // Draw the board edges
+    DrawLine(top_edge, border_image, CV_RGB(0,0,255));
+    DrawLine(right_edge, border_image, CV_RGB(0,0,255));
+    DrawLine(bottom_edge, border_image, CV_RGB(0,0,255));
+    DrawLine(left_edge, border_image, CV_RGB(0,0,255));
 
     return border_image;
 }
@@ -189,6 +194,47 @@ void BoardExtractor::MergeNearbyLines(std::vector<Vec2f> *lines, Mat image) {
                 // Mark line2 as merged, so that it's not used again
                 (*line2)[0] = 0;
                 (*line2)[1] = 100;
+            }
+        }
+    }
+}
+
+// Finds the top-, bottom-, left-, and rightmost lines.
+void BoardExtractor::FindEdges(std::vector<Vec2f> *lines, Vec2f *top_edge, Vec2f *bottom_edge, Vec2f *left_edge, Vec2f *right_edge) {
+    // Set impossible default values for comparisons, these will all be replaced
+    *top_edge = Vec2f(10000, 0);
+    *bottom_edge = Vec2f(0, 0);
+    *left_edge = Vec2f(-10000, 0);
+    *right_edge = Vec2f(0, 0);
+    float x_intercept_left = 10000;
+    float x_intercept_right = 0;
+
+    for (int i = 0; i < lines->size(); i++) {
+        Vec2f line = (*lines)[i];
+        float p = line[0];
+        float θ = line[1];
+
+        // Skip merged lines
+        if (p == 0 && θ == 100) continue;
+
+        if (θ > CV_PI*80/180 && θ < CV_PI*100/180) {
+            // If the line is almost horizontal, check to update the top and
+            // bottom edges
+            if (p < (*top_edge)[0]) *top_edge = line;
+            if (p > (*bottom_edge)[0]) *bottom_edge = line;
+        } else if (θ < CV_PI*10/180 || θ > CV_PI*170/180) {
+            // p will increase when going either left or right depending on θ,
+            // therefore we use the intersection point on the x-axis to
+            // determine when to update instead
+            float x_intercept = p/cos(θ);
+
+            if (x_intercept < x_intercept_left) {
+                *left_edge = line;
+                x_intercept_left = x_intercept;
+            }
+            if (x_intercept > x_intercept_right) {
+                *right_edge = line;
+                x_intercept_right = x_intercept;
             }
         }
     }
