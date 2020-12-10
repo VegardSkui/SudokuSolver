@@ -11,6 +11,32 @@
 // NOTE: All functions, except ExtractBoard, expects the input matrix image to
 // be of the CV_8UC1 (8-bit unsigned 1-channel) type.
 
+// Calculates the squared distance between two points.
+inline float SquaredDistance(Point p1, Point p2) {
+    return (p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y);
+}
+
+// Finds two different points on a line.
+inline void FindTwoPoints(Vec2f *line, Size image_size, Point *p1, Point *p2) {
+    float p = (*line)[0];
+    float θ = (*line)[1];
+
+    if (θ > CV_PI*45/180 && θ < CV_PI*135/180) {
+        // θ ∈ (45°,135°) i.e. closer to horizontal, find a point on the left
+        // and right side
+        p1->x = 0;
+        p1->y = p/sin(θ);
+        p2->x = image_size.width;
+        p2->y = (p - image_size.width*cos(θ)) / sin(θ);
+    } else {
+        // If the line is closer to vertical, find a point on the top and bottom
+        p1->x = p/cos(θ);
+        p1->y = 0;
+        p2->x = (p - image_size.height*sin(θ)) / cos(θ);
+        p2->y = image_size.height;
+    }
+}
+
 // Extracts the sudoku board from a larger image. Assuming the largest element
 // in the image is the sudoku board, black on white, and that it has a black
 // border around it.
@@ -23,11 +49,12 @@ Mat BoardExtractor::ExtractBoard(Mat image) {
     Mat border_image = Mat(image.size(), CV_8UC1);
 
     // Blur the image to smooth out noise and make border extraction easier
-    GaussianBlur(image, image, Size(11, 11), 0);
+    GaussianBlur(image, border_image, Size(11, 11), 0);
 
     // Make the image binary (black and white) using an adaptive threshold (use
     // an adaptive method since the image can have varying illumination levels)
-    adaptiveThreshold(image, border_image, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 5, 2);
+    adaptiveThreshold(border_image, border_image, 255, ADAPTIVE_THRESH_MEAN_C,
+                      THRESH_BINARY, 5, 2);
 
     // Invert the image such that the border (and noise) is white and the
     // background is black
@@ -59,12 +86,26 @@ Mat BoardExtractor::ExtractBoard(Mat image) {
     Point bottom_left = Intersection(bottom_edge, left_edge);
     Point bottom_right = Intersection(bottom_edge, right_edge);
 
-    circle(border_image, top_left, 15, CV_RGB(0,0,255));
-    circle(border_image, top_right, 15, CV_RGB(0,0,255));
-    circle(border_image, bottom_left, 15, CV_RGB(0,0,255));
-    circle(border_image, bottom_right, 15, CV_RGB(0,0,255));
+    // Get the length of the longest edge, this will be the size of the final
+    // board image
+    int max_length = sqrt(max(max(SquaredDistance(top_left, top_right),
+                                  SquaredDistance(top_right, bottom_right)),
+                              max(SquaredDistance(bottom_right, bottom_left),
+                                  SquaredDistance(bottom_left, top_left))));
 
-    return border_image;
+    // Configure a perspective transform map
+    Point2f source[4], destination[4];
+    source[0] = top_left;     destination[0] = Point(0,0);
+    source[1] = top_right;    destination[1] = Point(max_length-1, 0);
+    source[2] = bottom_left;  destination[2] = Point(0, max_length-1);
+    source[3] = bottom_right; destination[3] = Point(max_length-1, max_length-1);
+
+    // Extract the board from the original image
+    Mat board = Mat(Size(max_length, max_length), CV_8UC1);
+    warpPerspective(image, board, getPerspectiveTransform(source, destination),
+                    Size(max_length, max_length));
+
+    return board;
 }
 
 // Finds the point of the pixel giving rise to the largest connected component.
@@ -134,32 +175,6 @@ void BoardExtractor::DrawLine(Vec2f line, Mat image, Scalar rgb) {
     }
 
     cv::line(image, pt1, pt2, rgb);
-}
-
-// Calculates the squared distance between two points.
-inline float SquaredDistance(Point p1, Point p2) {
-    return (p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y);
-}
-
-// Finds two different points on a line.
-inline void FindTwoPoints(Vec2f *line, Size image_size, Point *p1, Point *p2) {
-    float p = (*line)[0];
-    float θ = (*line)[1];
-
-    if (θ > CV_PI*45/180 && θ < CV_PI*135/180) {
-        // θ ∈ (45°,135°) i.e. closer to horizontal, find a point on the left
-        // and right side
-        p1->x = 0;
-        p1->y = p/sin(θ);
-        p2->x = image_size.width;
-        p2->y = (p - image_size.width*cos(θ)) / sin(θ);
-    } else {
-        // If the line is closer to vertical, find a point on the top and bottom
-        p1->x = p/cos(θ);
-        p1->y = 0;
-        p2->x = (p - image_size.height*sin(θ)) / cos(θ);
-        p2->y = image_size.height;
-    }
 }
 
 // Merges lines that are close to each other.
