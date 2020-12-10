@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var presentingImagePicker = false
 
     @State var image: UIImage?
+    @State var board: UIImage?
 
     var body: some View {
         VStack {
@@ -33,9 +34,22 @@ struct ContentView: View {
                     .resizable()
                     .scaledToFit()
             }
-        }.sheet(isPresented: $presentingImagePicker, content: {
+
+            if let board = board {
+                Image(uiImage: board)
+                    .resizable()
+                    .scaledToFit()
+            }
+        }.sheet(isPresented: $presentingImagePicker, onDismiss: processImage, content: {
             ImagePicker(image: self.$image)
         })
+    }
+
+    func processImage() {
+        guard let image = image else { return }
+
+        // Extract the board from the selected image
+        board = BoardExtractorBridge().extractBoard(from: image)
     }
 }
 

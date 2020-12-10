@@ -15,6 +15,8 @@
 		5B9F07972582477B00BBA964 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F07962582477B00BBA964 /* ImagePicker.swift */; };
 		5B9F079B25824AFA00BBA964 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9F079A25824AF900BBA964 /* opencv2.framework */; };
 		5B9F079E25824C0900BBA964 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F079D25824C0800BBA964 /* Settings.bundle */; };
+		5BD42F712582521D006F8B3D /* BoardExtractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD42F6F2582521D006F8B3D /* BoardExtractor.cpp */; };
+		5BD42F7C25825350006F8B3D /* BoardExtractorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BD42F7B2582534F006F8B3D /* BoardExtractorBridge.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,11 @@
 		5B9F07962582477B00BBA964 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5B9F079A25824AF900BBA964 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = Frameworks/opencv2.framework; sourceTree = "<group>"; };
 		5B9F079D25824C0800BBA964 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		5BD42F6E2582521D006F8B3D /* SudokuSolver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SudokuSolver-Bridging-Header.h"; sourceTree = "<group>"; };
+		5BD42F6F2582521D006F8B3D /* BoardExtractor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoardExtractor.cpp; sourceTree = "<group>"; };
+		5BD42F702582521D006F8B3D /* BoardExtractor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoardExtractor.hpp; sourceTree = "<group>"; };
+		5BD42F79258252E6006F8B3D /* BoardExtractorBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardExtractorBridge.h; sourceTree = "<group>"; };
+		5BD42F7B2582534F006F8B3D /* BoardExtractorBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BoardExtractorBridge.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +73,8 @@
 				5B7E9B102581637900E5AD53 /* SudokuSolverApp.swift */,
 				5B7E9B122581637900E5AD53 /* ContentView.swift */,
 				5B9F07962582477B00BBA964 /* ImagePicker.swift */,
+				5BD42F732582527B006F8B3D /* BoardExtractor */,
+				5BD42F6E2582521D006F8B3D /* SudokuSolver-Bridging-Header.h */,
 				5B7E9B142581637A00E5AD53 /* Assets.xcassets */,
 				5B7E9B192581637A00E5AD53 /* Info.plist */,
 				5B7E9B162581637A00E5AD53 /* Preview Content */,
@@ -88,6 +97,17 @@
 				5B9F079A25824AF900BBA964 /* opencv2.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5BD42F732582527B006F8B3D /* BoardExtractor */ = {
+			isa = PBXGroup;
+			children = (
+				5BD42F702582521D006F8B3D /* BoardExtractor.hpp */,
+				5BD42F6F2582521D006F8B3D /* BoardExtractor.cpp */,
+				5BD42F79258252E6006F8B3D /* BoardExtractorBridge.h */,
+				5BD42F7B2582534F006F8B3D /* BoardExtractorBridge.mm */,
+			);
+			path = BoardExtractor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +142,7 @@
 				TargetAttributes = {
 					5B7E9B0C2581637900E5AD53 = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
 					};
 				};
 			};
@@ -164,7 +185,9 @@
 			files = (
 				5B9F07972582477B00BBA964 /* ImagePicker.swift in Sources */,
 				5B7E9B132581637900E5AD53 /* ContentView.swift in Sources */,
+				5BD42F7C25825350006F8B3D /* BoardExtractorBridge.mm in Sources */,
 				5B7E9B112581637900E5AD53 /* SudokuSolverApp.swift in Sources */,
+				5BD42F712582521D006F8B3D /* BoardExtractor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SudokuSolver/Preview Content\"";
 				DEVELOPMENT_TEAM = DHBK22HHBU;
@@ -308,6 +332,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vegardskui.SudokuSolver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SudokuSolver/SudokuSolver-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -318,6 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SudokuSolver/Preview Content\"";
 				DEVELOPMENT_TEAM = DHBK22HHBU;
@@ -334,6 +361,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vegardskui.SudokuSolver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SudokuSolver/SudokuSolver-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
