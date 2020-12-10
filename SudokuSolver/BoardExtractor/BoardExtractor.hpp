@@ -15,7 +15,11 @@ using namespace cv;
 
 class BoardExtractor {
 public:
-    Mat extract_board(Mat image);
+    Mat ExtractBoard(Mat image);
+
+private:
+    cv::Point FindLargestConnectedComponent(Mat image);
+    void HighlightComponent(Mat image, cv::Point seed_point);
 };
 
 #endif /* BoardExtractor_hpp */

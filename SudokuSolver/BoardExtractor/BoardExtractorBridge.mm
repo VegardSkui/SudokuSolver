@@ -20,7 +20,7 @@
 
     // Extract the board
     BoardExtractor boardExtractor;
-    cv::Mat board = boardExtractor.extract_board(sudoku);
+    cv::Mat board = boardExtractor.ExtractBoard(sudoku);
 
     // Convert the result to UIImage and return
     return MatToUIImage(board);
