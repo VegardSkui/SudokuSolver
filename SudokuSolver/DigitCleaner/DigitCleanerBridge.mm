@@ -26,4 +26,23 @@
     return MatToUIImage(digit);
 }
 
+- (UIImage *) cleanAndNormalizeDigitIn: (UIImage *) image {
+    // Convert the image to OpenCV matrix format
+    cv::Mat matrix;
+    UIImageToMat(image, matrix);
+
+    // Clean the digit
+    DigitCleaner digitCleaner;
+    Mat digit = digitCleaner.CleanDigit(matrix);
+
+    // Normalize the digit image, if a digit was found (Recall that a 1x1 image
+    // is returned by CleanDigit when no digit is found)
+    if (digit.size().width != 1) {
+        digit = digitCleaner.NormalizeDigit(digit);
+    }
+
+    // Convert the result to UIImage and return
+    return MatToUIImage(digit);
+}
+
 @end

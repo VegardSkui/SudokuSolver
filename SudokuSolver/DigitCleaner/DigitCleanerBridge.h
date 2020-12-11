@@ -14,6 +14,7 @@
 @interface DigitCleanerBridge : NSObject
 
 - (UIImage *) cleanDigitIn: (UIImage *) image;
+- (UIImage *) cleanAndNormalizeDigitIn: (UIImage *) image;
 
 @end
 
