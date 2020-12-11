@@ -3,3 +3,4 @@
 //
 
 #import "BoardExtractorBridge.h"
+#import "DigitCleanerBridge.h"

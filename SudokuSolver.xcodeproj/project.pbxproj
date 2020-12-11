@@ -17,6 +17,8 @@
 		5B9F079E25824C0900BBA964 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B9F079D25824C0800BBA964 /* Settings.bundle */; };
 		5BD42F712582521D006F8B3D /* BoardExtractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD42F6F2582521D006F8B3D /* BoardExtractor.cpp */; };
 		5BD42F7C25825350006F8B3D /* BoardExtractorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BD42F7B2582534F006F8B3D /* BoardExtractorBridge.mm */; };
+		5BD42F862583830D006F8B3D /* DigitCleaner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD42F842583830C006F8B3D /* DigitCleaner.cpp */; };
+		5BD42F8C2583832D006F8B3D /* DigitCleanerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BD42F8B2583832D006F8B3D /* DigitCleanerBridge.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,10 @@
 		5BD42F702582521D006F8B3D /* BoardExtractor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoardExtractor.hpp; sourceTree = "<group>"; };
 		5BD42F79258252E6006F8B3D /* BoardExtractorBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardExtractorBridge.h; sourceTree = "<group>"; };
 		5BD42F7B2582534F006F8B3D /* BoardExtractorBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BoardExtractorBridge.mm; sourceTree = "<group>"; };
+		5BD42F842583830C006F8B3D /* DigitCleaner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DigitCleaner.cpp; sourceTree = "<group>"; };
+		5BD42F852583830C006F8B3D /* DigitCleaner.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DigitCleaner.hpp; sourceTree = "<group>"; };
+		5BD42F8A25838322006F8B3D /* DigitCleanerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DigitCleanerBridge.h; sourceTree = "<group>"; };
+		5BD42F8B2583832D006F8B3D /* DigitCleanerBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DigitCleanerBridge.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,7 @@
 				5B7E9B122581637900E5AD53 /* ContentView.swift */,
 				5B9F07962582477B00BBA964 /* ImagePicker.swift */,
 				5BD42F732582527B006F8B3D /* BoardExtractor */,
+				5BD42F83258382F7006F8B3D /* DigitCleaner */,
 				5BD42F6E2582521D006F8B3D /* SudokuSolver-Bridging-Header.h */,
 				5B7E9B142581637A00E5AD53 /* Assets.xcassets */,
 				5B7E9B192581637A00E5AD53 /* Info.plist */,
@@ -108,6 +115,17 @@
 				5BD42F7B2582534F006F8B3D /* BoardExtractorBridge.mm */,
 			);
 			path = BoardExtractor;
+			sourceTree = "<group>";
+		};
+		5BD42F83258382F7006F8B3D /* DigitCleaner */ = {
+			isa = PBXGroup;
+			children = (
+				5BD42F852583830C006F8B3D /* DigitCleaner.hpp */,
+				5BD42F842583830C006F8B3D /* DigitCleaner.cpp */,
+				5BD42F8A25838322006F8B3D /* DigitCleanerBridge.h */,
+				5BD42F8B2583832D006F8B3D /* DigitCleanerBridge.mm */,
+			);
+			path = DigitCleaner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,10 +201,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD42F862583830D006F8B3D /* DigitCleaner.cpp in Sources */,
 				5B9F07972582477B00BBA964 /* ImagePicker.swift in Sources */,
 				5B7E9B132581637900E5AD53 /* ContentView.swift in Sources */,
 				5BD42F7C25825350006F8B3D /* BoardExtractorBridge.mm in Sources */,
 				5B7E9B112581637900E5AD53 /* SudokuSolverApp.swift in Sources */,
+				5BD42F8C2583832D006F8B3D /* DigitCleanerBridge.mm in Sources */,
 				5BD42F712582521D006F8B3D /* BoardExtractor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
