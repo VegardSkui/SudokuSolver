@@ -16,6 +16,7 @@ using namespace cv;
 class DigitCleaner {
 public:
     Mat CleanDigit(Mat image);
+    Mat NormalizeDigit(Mat image);
 
 private:
     cv::Point FindDigit(Mat image);

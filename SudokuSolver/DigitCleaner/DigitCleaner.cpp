@@ -119,3 +119,25 @@ Point DigitCleaner::FindDigit(Mat image) {
 
     return Point(0,0);
 }
+
+// Places the digit at the center of a 28x28 binary image with 4 pixels of
+// margin.
+Mat DigitCleaner::NormalizeDigit(Mat image) {
+    Mat output = Mat(28, 28, CV_8UC1, Scalar(0,0,0));
+
+    int width = round(20.0 * (double)image.size().width / (double)image.size().height);
+    resize(image, image, Size(width, 20));
+
+    image.copyTo(output(Rect((28 - width) / 2, 4, width, 20)));
+
+    for (int y = 0; y < 28; y++) {
+        uchar *row = output.ptr(y);
+        for (int x = 0; x < 28; x++) {
+            if (row[x] == 0) continue;
+            if (row[x] < 128) row[x] = 0;
+            else if (row[x] != 255) row[x] = 255;
+        }
+    }
+
+    return output;
+}
