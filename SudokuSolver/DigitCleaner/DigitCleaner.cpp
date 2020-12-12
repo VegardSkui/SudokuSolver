@@ -125,19 +125,35 @@ Point DigitCleaner::FindDigit(Mat image) {
 Mat DigitCleaner::NormalizeDigit(Mat image) {
     Mat output = Mat(28, 28, CV_8UC1, Scalar(0,0,0));
 
-    int width = round(20.0 * (double)image.size().width / (double)image.size().height);
-    resize(image, image, Size(width, 20));
+    // Calculate the rect inside the output image the original image will be
+    // copied to. Handle both both tall and wide images.
+    int x, y, width, height;
+    if (image.size().height > image.size().width) {
+        width = round(20.0 * (double)image.size().width / (double)image.size().height);
+        height = 20;
+        x = (28 - width) / 2;
+        y = 4;
+    } else {
+        width = 20;
+        height = round(20.0 * (double)image.size().height / (double)image.size().width);
+        x = 4;
+        y = (28 - height) / 2;
+    }
+    Rect rect = Rect(x, y, width, height);
 
-    image.copyTo(output(Rect((28 - width) / 2, 4, width, 20)));
-
-    for (int y = 0; y < 28; y++) {
+    // Resize the image and make sure it's still binary. Darker pixels are
+    // turned black and lighter pixels are turned white.
+    resize(image, image, Size(width, height));
+    for (int y = 0; y < height; y++) {
         uchar *row = output.ptr(y);
-        for (int x = 0; x < 28; x++) {
+        for (int x = 0; x < width; x++) {
             if (row[x] == 0) continue;
             if (row[x] < 128) row[x] = 0;
             else if (row[x] != 255) row[x] = 255;
         }
     }
 
+    // Copy the image into the output image and return it
+    image.copyTo(output(rect));
     return output;
 }
