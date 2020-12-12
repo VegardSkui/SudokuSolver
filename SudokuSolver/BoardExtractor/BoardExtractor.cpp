@@ -41,6 +41,19 @@ inline void FindTwoPoints(Vec2f *line, Size image_size, Point *p1, Point *p2) {
 // in the image is the sudoku board, black on white, and that it has a black
 // border around it.
 Mat BoardExtractor::ExtractBoard(Mat image) {
+    // Resize the image such that the longest edge is 500 pixels, this is
+    // necessary to avoid all later operations having to adapt to varying image
+    // dimensions
+    int width, height;
+    if (image.size().height > image.size().height) {
+        width = 500.0 * (double)image.size().width / (double)image.size().height;
+        height = 500;
+    } else {
+        width = 500;
+        height = 500.0 * (double)image.size().height / (double)image.size().width;
+    }
+    resize(image, image, Size(width, height));
+
     // Convert the image to grayscale
     cvtColor(image, image, COLOR_BGR2GRAY);
 
