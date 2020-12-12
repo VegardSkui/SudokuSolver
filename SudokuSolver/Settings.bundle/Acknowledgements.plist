@@ -4,14 +4,22 @@
 <dict>
 	<key>PreferenceSpecifiers</key>
 	<array>
-        <dict>
-            <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>Title</key>
-            <string>OpenCV</string>
-            <key>File</key>
-            <string>Acknowledgements/OpenCV</string>
-        </dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>MNISTClassifier</string>
+			<key>File</key>
+			<string>Acknowledgements/MNISTClassifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>OpenCV</string>
+			<key>File</key>
+			<string>Acknowledgements/OpenCV</string>
+		</dict>
 	</array>
 </dict>
 </plist>

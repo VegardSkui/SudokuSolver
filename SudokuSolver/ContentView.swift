@@ -43,7 +43,7 @@ struct ContentView: View {
                         .scaledToFit()
                 }*/
 
-                if processor.hasNormalizedCells {
+                if processor.hasCellValues {
                     ForEach(0..<9) { i in
                         HStack {
                             ForEach(0..<9) { j in
@@ -58,6 +58,8 @@ struct ContentView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .border(Color.blue)
+
+                                    Text("\(processor.cellValues[index])")
                                 }
                             }
                         }

@@ -9,19 +9,22 @@
 import Foundation
 
 class SudokuProcessor: ObservableObject {
-    @Published var hasNormalizedCells = false
+    /// Signifies that the board has been processed and each digit classified.
+    @Published var hasCellValues = false
 
     /// The board extracted from the original image.
     private(set) var board: UIImage?
 
     private(set) var cellImages = [UIImage]()
     private(set) var normalizedCellImages = [UIImage]()
+    private(set) var cellValues = [Int]()
 
     private let boardExtractor = BoardExtractorBridge()
     private let digitCleaner = DigitCleanerBridge()
+    private let classifier = MNISTClassifier()
 
     func process(image: UIImage) {
-        hasNormalizedCells = false
+        hasCellValues = false
 
         // Remove any existing cell images and values
         cellImages = [UIImage]()
@@ -35,7 +38,11 @@ class SudokuProcessor: ObservableObject {
             digitCleaner.cleanAndNormalizeDigit(in: cell)
         }
 
-        hasNormalizedCells = true
+        cellValues = normalizedCellImages.map { cell in
+            classifyDigit(in: cell)
+        }
+
+        hasCellValues = true
     }
 
     /// Splits the board into 81 smaller images, one for each cell.
@@ -67,5 +74,37 @@ class SudokuProcessor: ObservableObject {
         }
 
         return result
+    }
+
+    /// Tries to determine the digit in the given cell, 0 signifies that the
+    /// digit could not be determined.
+    private func classifyDigit(in cell: UIImage) -> Int {
+        guard cell.size.width != 1 else {
+            return 0
+        }
+
+        guard let cgCell = cell.cgImage else {
+            fatalError("No backing CGImage")
+        }
+
+        guard let input = try? MNISTClassifierInput(imageWith: cgCell) else {
+            fatalError("Could not create classifier input")
+        }
+
+        guard let output = try? classifier.prediction(input: input) else {
+            fatalError("Could not classify digit in cell")
+        }
+
+        let classification = output.classLabel
+
+        // Discard every result where the classifier isn't certain. This also
+        // removes some corret results, but any wrong digit guarentees a wrong
+        // solution and is unacceptable. We less digits it is at least possible
+        // to arrive at the correct solution to the puzzle.
+        guard output.labelProbabilities[classification]! == 1 else {
+            return 0
+        }
+
+        return Int(classification)
     }
 }
