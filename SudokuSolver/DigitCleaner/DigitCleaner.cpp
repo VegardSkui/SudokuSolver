@@ -88,18 +88,11 @@ Mat DigitCleaner::CleanDigit(Mat image) {
     // right won't be at the edge. If we actually found a grid line it would
     // more likely already be detected by the top and bottom check.
 
-    // Extract the digit into its own image
-    Mat digit = Mat(bottom-top+1, right-left+1, CV_8UC1);
-    for (int y = 0; y < digit.size().height; y++) {
-        uchar *row = digit.ptr(y);
-        uchar *row_original = image.ptr(top+y);
-        for (int x = 0; x < digit.size().width; x++) {
-            row[x] = row_original[left+x];
-        }
-    }
+    // Create a rectangle signifying where the digit is located in the image
+    Rect digit = Rect(left, top, right-left+1, bottom-top+1);
 
-    // Return the digit image
-    return digit;
+    // Return only the part of the image where the digit is located
+    return image(digit);
 }
 
 // Detects a point which is likely part of the digit by searching horizontally
