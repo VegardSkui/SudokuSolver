@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B6E50A52584D7730089BF17 /* SudokuProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */; };
 		5B7E9B112581637900E5AD53 /* SudokuSolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E9B102581637900E5AD53 /* SudokuSolverApp.swift */; };
 		5B7E9B132581637900E5AD53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E9B122581637900E5AD53 /* ContentView.swift */; };
 		5B7E9B152581637A00E5AD53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E9B142581637A00E5AD53 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuProcessor.swift; sourceTree = "<group>"; };
 		5B7E9B0D2581637900E5AD53 /* SudokuSolver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SudokuSolver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7E9B102581637900E5AD53 /* SudokuSolverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuSolverApp.swift; sourceTree = "<group>"; };
 		5B7E9B122581637900E5AD53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				5B7E9B102581637900E5AD53 /* SudokuSolverApp.swift */,
+				5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */,
 				5B7E9B122581637900E5AD53 /* ContentView.swift */,
 				5B9F07962582477B00BBA964 /* ImagePicker.swift */,
 				5BD42F732582527B006F8B3D /* BoardExtractor */,
@@ -204,6 +207,7 @@
 				5BD42F862583830D006F8B3D /* DigitCleaner.cpp in Sources */,
 				5B9F07972582477B00BBA964 /* ImagePicker.swift in Sources */,
 				5B7E9B132581637900E5AD53 /* ContentView.swift in Sources */,
+				5B6E50A52584D7730089BF17 /* SudokuProcessor.swift in Sources */,
 				5BD42F7C25825350006F8B3D /* BoardExtractorBridge.mm in Sources */,
 				5B7E9B112581637900E5AD53 /* SudokuSolverApp.swift in Sources */,
 				5BD42F8C2583832D006F8B3D /* DigitCleanerBridge.mm in Sources */,

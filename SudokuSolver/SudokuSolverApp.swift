@@ -13,6 +13,7 @@ struct SudokuSolverApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(SudokuProcessor())
         }
     }
 }
