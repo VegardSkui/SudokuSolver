@@ -30,6 +30,8 @@ class SudokuProcessor: ObservableObject {
         cellImages = [UIImage]()
         normalizedCellImages = [UIImage]()
 
+        let image = image.normalizedRotation()
+
         board = boardExtractor.extractBoard(from: image)
 
         cellImages = extractCellImages(from: board!)

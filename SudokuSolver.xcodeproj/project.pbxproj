@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B6E50A52584D7730089BF17 /* SudokuProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */; };
 		5B6E50AB2584E48B0089BF17 /* MNISTClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */; };
+		5B6E50C4258509CB0089BF17 /* UIImage-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50C3258509CB0089BF17 /* UIImage-Extensions.swift */; };
 		5B7E9B112581637900E5AD53 /* SudokuSolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E9B102581637900E5AD53 /* SudokuSolverApp.swift */; };
 		5B7E9B132581637900E5AD53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E9B122581637900E5AD53 /* ContentView.swift */; };
 		5B7E9B152581637A00E5AD53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E9B142581637A00E5AD53 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuProcessor.swift; sourceTree = "<group>"; };
 		5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNISTClassifier.mlmodel; sourceTree = "<group>"; };
+		5B6E50C3258509CB0089BF17 /* UIImage-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extensions.swift"; sourceTree = "<group>"; };
 		5B7E9B0D2581637900E5AD53 /* SudokuSolver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SudokuSolver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7E9B102581637900E5AD53 /* SudokuSolverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuSolverApp.swift; sourceTree = "<group>"; };
 		5B7E9B122581637900E5AD53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				5BD42F732582527B006F8B3D /* BoardExtractor */,
 				5BD42F83258382F7006F8B3D /* DigitCleaner */,
 				5BD42F6E2582521D006F8B3D /* SudokuSolver-Bridging-Header.h */,
+				5B6E50C3258509CB0089BF17 /* UIImage-Extensions.swift */,
 				5B7E9B142581637A00E5AD53 /* Assets.xcassets */,
 				5B7E9B192581637A00E5AD53 /* Info.plist */,
 				5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */,
@@ -212,6 +215,7 @@
 				5B7E9B132581637900E5AD53 /* ContentView.swift in Sources */,
 				5B6E50A52584D7730089BF17 /* SudokuProcessor.swift in Sources */,
 				5BD42F7C25825350006F8B3D /* BoardExtractorBridge.mm in Sources */,
+				5B6E50C4258509CB0089BF17 /* UIImage-Extensions.swift in Sources */,
 				5B7E9B112581637900E5AD53 /* SudokuSolverApp.swift in Sources */,
 				5BD42F8C2583832D006F8B3D /* DigitCleanerBridge.mm in Sources */,
 				5BD42F712582521D006F8B3D /* BoardExtractor.cpp in Sources */,
@@ -277,6 +281,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -331,6 +336,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
