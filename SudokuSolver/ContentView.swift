@@ -16,7 +16,7 @@ struct ContentView: View {
     @State var image: UIImage?
 
     var body: some View {
-        ScrollView {
+        TabView {
             VStack {
                 Button(action: {
                     presentingImagePicker = true
@@ -31,45 +31,30 @@ struct ContentView: View {
                     .cornerRadius(10)
                 }
 
-                /*if let image = image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                }
+            }
+            .tabItem {
+                Image(systemName: "plus.square")
+                Text("Open")
+            }
 
-                if let board = processor.board {
-                    Image(uiImage: board)
-                        .resizable()
-                        .scaledToFit()
-                }*/
-
-                if processor.hasCellValues {
-                    ForEach(0..<9) { i in
-                        HStack {
-                            ForEach(0..<9) { j in
-                                let index = i*9 + j
-                                VStack {
-                                    Image(uiImage: processor.cellImages[index])
-                                        .resizable()
-                                        .scaledToFit()
-                                        .border(Color.blue)
-
-                                    Image(uiImage: processor.normalizedCellImages[index])
-                                        .resizable()
-                                        .scaledToFit()
-                                        .border(Color.blue)
-
-                                    Text("\(processor.cellValues[index])")
-                                }
-                            }
-                        }
+            if let board = processor.board {
+                BoardView(original: image!, board: board)
+                    .tabItem {
+                        Image(systemName: "squareshape.split.3x3")
+                        Text("Board")
                     }
-                }
+            }
 
-            }.sheet(isPresented: $presentingImagePicker, onDismiss: processImage, content: {
-                ImagePicker(image: self.$image)
-            })
-        }
+            if processor.hasCellValues {
+                DigitsView()
+                    .tabItem {
+                        Image(systemName: "textformat.123")
+                        Text("Digits")
+                    }
+            }
+        }.sheet(isPresented: $presentingImagePicker, onDismiss: processImage, content: {
+            ImagePicker(image: self.$image)
+        })
     }
 
     func processImage() {
