@@ -102,15 +102,28 @@ class SudokuProcessor: ObservableObject {
         }
 
         let classification = output.classLabel
+        let probability = output.labelProbabilities[classification]!
 
-        // Discard every result where the classifier isn't certain. This also
-        // removes some corret results, but any wrong digit guarentees a wrong
-        // solution and is unacceptable. We less digits it is at least possible
-        // to arrive at the correct solution to the puzzle.
-        guard output.labelProbabilities[classification]! == 1 else {
-            return 0
+        // If the classifier is certain, use the result
+        if probability == 1 {
+            return Int(classification)
         }
 
-        return Int(classification)
+        // Get the second highest probability
+        let secondProbability = output.labelProbabilities.values.filter {
+            $0 != probability
+        }.max()!
+
+        // Also include the result if the classifier is at least 98% certain and
+        // the certainty is higher then the next highest by a factor of 10
+        if probability > 0.98 && probability / secondProbability > 10 {
+            return Int(classification)
+        }
+
+        // We discard every other result. This also removes some correct
+        // results, but any wrong digit guarentees a wrong solution and is
+        // unacceptable. With less digits it is at least possible to arrive at
+        // the correct solution to the puzzle.
+        return 0
     }
 }
