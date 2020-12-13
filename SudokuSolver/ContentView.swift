@@ -52,6 +52,14 @@ struct ContentView: View {
                         Text("Digits")
                     }
             }
+
+            if processor.hasCellValues {
+                SolutionView()
+                    .tabItem {
+                        Image(systemName: "checkmark.square")
+                        Text("Solution")
+                    }
+            }
         }.sheet(isPresented: $presentingImagePicker, onDismiss: processImage, content: {
             ImagePicker(image: self.$image)
         })

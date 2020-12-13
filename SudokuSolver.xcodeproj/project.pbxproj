@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B410DE425861D670047ED73 /* DigitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B410DE325861D670047ED73 /* DigitsView.swift */; };
 		5B410DEA258620780047ED73 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B410DE9258620780047ED73 /* BoardView.swift */; };
+		5B410E03258627BB0047ED73 /* SolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B410E02258627BB0047ED73 /* SolutionView.swift */; };
 		5B550DE32585A0BC00E73B34 /* SudokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B550DE22585A0BC00E73B34 /* SudokuView.swift */; };
 		5B6E50A52584D7730089BF17 /* SudokuProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */; };
 		5B6E50AB2584E48B0089BF17 /* MNISTClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		5B410DE325861D670047ED73 /* DigitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitsView.swift; sourceTree = "<group>"; };
 		5B410DE9258620780047ED73 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		5B410E02258627BB0047ED73 /* SolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionView.swift; sourceTree = "<group>"; };
 		5B550DE22585A0BC00E73B34 /* SudokuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuView.swift; sourceTree = "<group>"; };
 		5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuProcessor.swift; sourceTree = "<group>"; };
 		5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNISTClassifier.mlmodel; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				5B410DE9258620780047ED73 /* BoardView.swift */,
 				5B410DE325861D670047ED73 /* DigitsView.swift */,
+				5B410E02258627BB0047ED73 /* SolutionView.swift */,
 				5B550DE22585A0BC00E73B34 /* SudokuView.swift */,
 			);
 			path = Views;
@@ -309,6 +312,7 @@
 				5B6E50A52584D7730089BF17 /* SudokuProcessor.swift in Sources */,
 				5BD42F7C25825350006F8B3D /* BoardExtractorBridge.mm in Sources */,
 				5B6E50C4258509CB0089BF17 /* UIImage-Extensions.swift in Sources */,
+				5B410E03258627BB0047ED73 /* SolutionView.swift in Sources */,
 				5B7E9B112581637900E5AD53 /* SudokuSolverApp.swift in Sources */,
 				5BD42F8C2583832D006F8B3D /* DigitCleanerBridge.mm in Sources */,
 				5B410DEA258620780047ED73 /* BoardView.swift in Sources */,
