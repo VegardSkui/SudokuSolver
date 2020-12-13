@@ -38,4 +38,10 @@ class SimpleBacktrackingSolverTests: XCTestCase {
         let result = SimpleBacktrackingSolver().solve(sudoku: sudoku)
         XCTAssertEqual(result, solution, "Solution is wrong")
     }
+
+    func testEmptyBoard() throws {
+        let empty = [Int](repeating: 0, count: 81)
+        let result = SimpleBacktrackingSolver().solve(sudoku: empty)
+        XCTAssertNotNil(result, "Solving an empty board failed")
+    }
 }
