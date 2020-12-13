@@ -10,9 +10,9 @@
 		5B410DE425861D670047ED73 /* DigitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B410DE325861D670047ED73 /* DigitsView.swift */; };
 		5B410DEA258620780047ED73 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B410DE9258620780047ED73 /* BoardView.swift */; };
 		5B410E03258627BB0047ED73 /* SolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B410E02258627BB0047ED73 /* SolutionView.swift */; };
+		5B410E5E2586582A0047ED73 /* MNISTClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5B410E5D258658290047ED73 /* MNISTClassifier.mlmodel */; };
 		5B550DE32585A0BC00E73B34 /* SudokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B550DE22585A0BC00E73B34 /* SudokuView.swift */; };
 		5B6E50A52584D7730089BF17 /* SudokuProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */; };
-		5B6E50AB2584E48B0089BF17 /* MNISTClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */; };
 		5B6E50C4258509CB0089BF17 /* UIImage-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50C3258509CB0089BF17 /* UIImage-Extensions.swift */; };
 		5B6E50D225854E3B0089BF17 /* SimpleBacktrackingSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50D125854E3B0089BF17 /* SimpleBacktrackingSolver.swift */; };
 		5B6E50E525854E5F0089BF17 /* SimpleBacktrackingSolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50E425854E5F0089BF17 /* SimpleBacktrackingSolverTests.swift */; };
@@ -44,9 +44,9 @@
 		5B410DE325861D670047ED73 /* DigitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitsView.swift; sourceTree = "<group>"; };
 		5B410DE9258620780047ED73 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		5B410E02258627BB0047ED73 /* SolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionView.swift; sourceTree = "<group>"; };
+		5B410E5D258658290047ED73 /* MNISTClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MNISTClassifier.mlmodel; path = Vendor/MNISTClassifier.mlmodel; sourceTree = SOURCE_ROOT; };
 		5B550DE22585A0BC00E73B34 /* SudokuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuView.swift; sourceTree = "<group>"; };
 		5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuProcessor.swift; sourceTree = "<group>"; };
-		5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNISTClassifier.mlmodel; sourceTree = "<group>"; };
 		5B6E50C3258509CB0089BF17 /* UIImage-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extensions.swift"; sourceTree = "<group>"; };
 		5B6E50D125854E3B0089BF17 /* SimpleBacktrackingSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBacktrackingSolver.swift; sourceTree = "<group>"; };
 		5B6E50D825854E500089BF17 /* SudokuSolverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudokuSolverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +147,7 @@
 				5B6E50C3258509CB0089BF17 /* UIImage-Extensions.swift */,
 				5B7E9B142581637A00E5AD53 /* Assets.xcassets */,
 				5B7E9B192581637A00E5AD53 /* Info.plist */,
-				5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */,
+				5B410E5D258658290047ED73 /* MNISTClassifier.mlmodel */,
 				5B7E9B162581637A00E5AD53 /* Preview Content */,
 				5B9F079D25824C0800BBA964 /* Settings.bundle */,
 			);
@@ -317,7 +317,7 @@
 				5BD42F8C2583832D006F8B3D /* DigitCleanerBridge.mm in Sources */,
 				5B410DEA258620780047ED73 /* BoardView.swift in Sources */,
 				5BD42F712582521D006F8B3D /* BoardExtractor.cpp in Sources */,
-				5B6E50AB2584E48B0089BF17 /* MNISTClassifier.mlmodel in Sources */,
+				5B410E5E2586582A0047ED73 /* MNISTClassifier.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

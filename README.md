@@ -11,7 +11,8 @@ Swift compiler versions, see [this
 page](https://docs.opencv.org/master/d5/da3/tutorial_ios_install.html) for
 instructions.
 
-Classification of the digits in each cell is done using a CoreML model trained
-on the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset. Download a pretrained
-model from Apple [here](https://developer.apple.com/machine-learning/models/)
-and place `MNISTClassifier.mlmodel` into the root folder of the project.
+## Digit Classification
+
+Digits are classified using a CoreML model trained on the [MNIST](http://yann.lecun.com/exdb/mnist/)
+dataset. The model is provided by Apple under the MIT [license](https://docs-assets.developer.apple.com/coreml/models/Image/DrawingClassification/MNISTClassifier/LICENSE-MIT.txt)
+and can be found [here](https://developer.apple.com/machine-learning/models/).
