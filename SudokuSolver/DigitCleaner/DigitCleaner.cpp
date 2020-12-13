@@ -37,12 +37,12 @@ int SearchFromBottom(Mat image) {
 // image will be 1x1 pure red.
 Mat DigitCleaner::CleanDigit(Mat image) {
     // Blur the image to smooth out noise
-    GaussianBlur(image, image, Size(11, 11), 0);
+    GaussianBlur(image, image, Size(5, 5), 0);
 
     // Make the image binary (black and white) using an adaptive threshold (use
     // an adaptive method since the image can have varying illumination levels)
     adaptiveThreshold(image, image, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY,
-                      5, 2);
+                      3, 2);
 
     // Invert the image such that we have white features on a black background
     bitwise_not(image, image);
