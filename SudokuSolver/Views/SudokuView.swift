@@ -32,7 +32,7 @@ struct SudokuView: View {
 
     private func fontForCellAt(_ index: Int) -> Font {
         if prefilled[index] == 0 {
-            return .system(size: 16, weight: .medium, design: .default)
+            return .system(size: 16, weight: .regular, design: .default)
         } else {
             return .system(size: 16, weight: .bold, design: .default)
         }
