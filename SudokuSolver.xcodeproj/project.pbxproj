@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B410DE425861D670047ED73 /* DigitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B410DE325861D670047ED73 /* DigitsView.swift */; };
 		5B410DEA258620780047ED73 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B410DE9258620780047ED73 /* BoardView.swift */; };
+		5B550DE32585A0BC00E73B34 /* SudokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B550DE22585A0BC00E73B34 /* SudokuView.swift */; };
 		5B6E50A52584D7730089BF17 /* SudokuProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */; };
 		5B6E50AB2584E48B0089BF17 /* MNISTClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */; };
 		5B6E50C4258509CB0089BF17 /* UIImage-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E50C3258509CB0089BF17 /* UIImage-Extensions.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		5B410DE325861D670047ED73 /* DigitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitsView.swift; sourceTree = "<group>"; };
 		5B410DE9258620780047ED73 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		5B550DE22585A0BC00E73B34 /* SudokuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuView.swift; sourceTree = "<group>"; };
 		5B6E50A42584D7730089BF17 /* SudokuProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuProcessor.swift; sourceTree = "<group>"; };
 		5B6E50AA2584E48B0089BF17 /* MNISTClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNISTClassifier.mlmodel; sourceTree = "<group>"; };
 		5B6E50C3258509CB0089BF17 /* UIImage-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extensions.swift"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				5B410DE9258620780047ED73 /* BoardView.swift */,
 				5B410DE325861D670047ED73 /* DigitsView.swift */,
+				5B550DE22585A0BC00E73B34 /* SudokuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			files = (
 				5B410DE425861D670047ED73 /* DigitsView.swift in Sources */,
 				5BD42F862583830D006F8B3D /* DigitCleaner.cpp in Sources */,
+				5B550DE32585A0BC00E73B34 /* SudokuView.swift in Sources */,
 				5B9F07972582477B00BBA964 /* ImagePicker.swift in Sources */,
 				5B6E50D225854E3B0089BF17 /* SimpleBacktrackingSolver.swift in Sources */,
 				5B7E9B132581637900E5AD53 /* ContentView.swift in Sources */,
