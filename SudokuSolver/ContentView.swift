@@ -60,7 +60,9 @@ struct ContentView: View {
     func processImage() {
         guard let image = image else { return }
 
-        processor.process(image: image)
+        DispatchQueue.global(qos: .userInitiated).async {
+            processor.process(image: image)
+        }
     }
 }
 

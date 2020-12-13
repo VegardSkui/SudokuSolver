@@ -24,7 +24,9 @@ class SudokuProcessor: ObservableObject {
     private let classifier = MNISTClassifier()
 
     func process(image: UIImage) {
-        hasCellValues = false
+        DispatchQueue.main.async {
+            self.hasCellValues = false
+        }
 
         // Remove any existing cell images and values
         cellImages = [UIImage]()
@@ -44,7 +46,9 @@ class SudokuProcessor: ObservableObject {
             classifyDigit(in: cell)
         }
 
-        hasCellValues = true
+        DispatchQueue.main.async {
+            self.hasCellValues = true
+        }
     }
 
     /// Splits the board into 81 smaller images, one for each cell.
