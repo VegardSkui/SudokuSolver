@@ -16,7 +16,7 @@ struct SolutionView: View {
             Text("Solution")
                 .font(.headline)
 
-            SudokuView(prefilled: processor.cellValues, digits: processor.cellValues)
+            SudokuView(prefilled: processor.cellValues, digits: processor.solution)
 
             Text("Digits recognized from the image are highlighted in bold")
                 .padding(.horizontal)

@@ -53,7 +53,7 @@ struct ContentView: View {
                     }
             }
 
-            if processor.hasCellValues {
+            if processor.hasSolution {
                 SolutionView()
                     .tabItem {
                         Image(systemName: "checkmark.square")

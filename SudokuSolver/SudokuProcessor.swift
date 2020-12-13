@@ -11,6 +11,7 @@ import Foundation
 class SudokuProcessor: ObservableObject {
     /// Signifies that the board has been processed and each digit classified.
     @Published var hasCellValues = false
+    @Published var hasSolution = false
 
     /// The board extracted from the original image.
     private(set) var board: UIImage?
@@ -18,14 +19,17 @@ class SudokuProcessor: ObservableObject {
     private(set) var cellImages = [UIImage]()
     private(set) var normalizedCellImages = [UIImage]()
     private(set) var cellValues = [Int]()
+    private(set) var solution = [Int]()
 
     private let boardExtractor = BoardExtractorBridge()
     private let digitCleaner = DigitCleanerBridge()
     private let classifier = MNISTClassifier()
+    private let solver = SimpleBacktrackingSolver()
 
     func process(image: UIImage) {
         DispatchQueue.main.async {
             self.hasCellValues = false
+            self.hasSolution = false
         }
 
         // Remove any existing cell images and values
@@ -48,6 +52,16 @@ class SudokuProcessor: ObservableObject {
 
         DispatchQueue.main.async {
             self.hasCellValues = true
+        }
+        
+        let solution = solver.solve(sudoku: cellValues)
+        if solution == nil {
+            self.solution = cellValues
+        } else {
+            self.solution = solution!
+            DispatchQueue.main.async {
+                self.hasSolution = true
+            }
         }
     }
 
