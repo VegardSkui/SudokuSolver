@@ -22,6 +22,7 @@ struct SudokuView: View {
                             .frame(width: 40, height: 40, alignment: .center)
                             .border(Color.black, width: 1)
                             .background(backgroundForCellAt(x, y))
+                            .foregroundColor(.black)
                             .font(fontForCellAt(index))
 
                     }
