@@ -11,7 +11,10 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var processor: SudokuProcessor
 
+    @State var presentingSourceTypeSelectionSheet = false
+    @State var selectedSourceType: UIImagePickerController.SourceType = .photoLibrary
     @State var presentingImagePicker = false
+
     @State var presentingDeveloperView = false
 
     @State var image: UIImage?
@@ -27,7 +30,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button(action: {
-                presentingImagePicker = true
+                presentingSourceTypeSelectionSheet = true
             }) {
                 HStack {
                     Image(systemName: "photo")
@@ -38,9 +41,15 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
             }
-            .sheet(isPresented: $presentingImagePicker, onDismiss: processImage, content: {
-                ImagePicker(image: self.$image)
-            })
+            .actionSheet(isPresented: $presentingSourceTypeSelectionSheet) {
+                ActionSheet(title: Text("Choose a Photo"),
+                            buttons: [.default(Text("Photo Library"), action: presentPhotoLibrary),
+                                      .default(Text("Camera"), action: presentCamera),
+                                      .cancel()])
+            }
+            .sheet(isPresented: $presentingImagePicker, onDismiss: processImage) {
+                ImagePicker(image: self.$image, sourceType: selectedSourceType)
+            }
 
             Text(message)
                 .padding()
@@ -127,6 +136,16 @@ struct ContentView: View {
         message = "Start by opening a photo of a sudoku puzzle"
         cells = [SudokuCell](repeating: SudokuCell(value: 0, isHighlighted: false),
                              count: 81)
+    }
+
+    private func presentPhotoLibrary() {
+        selectedSourceType = .savedPhotosAlbum
+        presentingImagePicker = true
+    }
+
+    private func presentCamera() {
+        selectedSourceType = .camera
+        presentingImagePicker = true
     }
 }
 
