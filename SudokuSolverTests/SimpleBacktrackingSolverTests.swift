@@ -34,6 +34,19 @@ class SimpleBacktrackingSolverTests: XCTestCase {
         1,3,2,6,9,5,7,8,4,
     ]
 
+    // There are two 3s in the top middle box
+    let unsolvableSudoku = [
+        2,0,3,7,0,4,0,0,0,
+        0,8,0,3,0,0,0,0,5,
+        0,0,0,0,3,0,0,1,0,
+        0,0,0,1,0,0,0,0,3,
+        0,2,0,0,8,0,1,7,0,
+        9,0,0,0,0,3,0,0,0,
+        0,5,0,0,0,0,0,0,0,
+        6,0,0,0,7,1,0,3,0,
+        0,0,0,6,0,5,7,0,4,
+    ]
+
     func testSolvableSudoku() throws {
         let result = SimpleBacktrackingSolver().solve(sudoku: sudoku)
         XCTAssertEqual(result, solution, "Solution is wrong")
@@ -43,5 +56,10 @@ class SimpleBacktrackingSolverTests: XCTestCase {
         let empty = [Int](repeating: 0, count: 81)
         let result = SimpleBacktrackingSolver().solve(sudoku: empty)
         XCTAssertNotNil(result, "Solving an empty board failed")
+    }
+
+    func testUnsolvableSudoku() throws {
+        let result = SimpleBacktrackingSolver().solve(sudoku: unsolvableSudoku)
+        XCTAssertNil(result, "Unsolvable sudoku did not return nil")
     }
 }
