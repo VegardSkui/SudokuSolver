@@ -6,63 +6,47 @@
 //  Copyright © 2020 Vegard Skui. All rights reserved.
 //
 
-import Foundation
-
 class SudokuProcessor: ObservableObject {
-    /// Signifies that the board has been processed and each digit classified.
-    @Published var hasCellValues = false
-    @Published var hasSolution = false
+    /// The inputted image with normalized orientation.
+    private(set) var normalized: UIImage?
 
     /// The board extracted from the original image.
     private(set) var board: UIImage?
 
+    /// Cropped images of each cell on the board.
     private(set) var cellImages = [UIImage]()
+
+    /// Images of each cell as passed to the classifier.
     private(set) var normalizedCellImages = [UIImage]()
     private(set) var cellValues = [Int]()
-    private(set) var solution = [Int]()
 
     private let boardExtractor = BoardExtractorBridge()
     private let digitCleaner = DigitCleanerBridge()
     private let classifier = MNISTClassifier()
-    private let solver = SimpleBacktrackingSolver()
 
-    func process(image: UIImage) {
-        DispatchQueue.main.async {
-            self.hasCellValues = false
-            self.hasSolution = false
-        }
-
+    /// Extracts and classifies the digits from an image of a sudoku board.
+    func process(image: UIImage) -> [Int]? {
         // Remove any existing cell images and values
         cellImages = [UIImage]()
         normalizedCellImages = [UIImage]()
+        cellValues = [Int]()
 
-        let image = image.normalizedRotation()
+        normalized = image.normalizedRotation()
 
-        board = boardExtractor.extractBoard(from: image)
+        board = boardExtractor.extractBoard(from: normalized)
 
-        cellImages = extractCellImages(from: board!)
+        guard let cellImages = extractCellImages(from: board!) else { return nil }
+        self.cellImages = cellImages
 
         normalizedCellImages = cellImages.map { cell in
-            digitCleaner.cleanAndNormalizeDigit(in: cell)
+            digitCleaner.cleanAndNormalizeDigit(in: cell)!
         }
 
         cellValues = normalizedCellImages.map { cell in
             classifyDigit(in: cell)
         }
 
-        DispatchQueue.main.async {
-            self.hasCellValues = true
-        }
-        
-        let solution = solver.solve(sudoku: cellValues)
-        if solution == nil {
-            self.solution = cellValues
-        } else {
-            self.solution = solution!
-            DispatchQueue.main.async {
-                self.hasSolution = true
-            }
-        }
+        return cellValues
     }
 
     /// Splits the board into 81 smaller images, one for each cell.
@@ -70,7 +54,7 @@ class SudokuProcessor: ObservableObject {
     /// The images extend 10% outside the calculated cell size when possible to
     /// reduce the probability of the digit touching the edge, thus the images
     /// along the edges are not square.
-    private func extractCellImages(from board: UIImage) -> [UIImage] {
+    private func extractCellImages(from board: UIImage) -> [UIImage]? {
         guard let cgBoard = board.cgImage else {
             fatalError("No backing CGImage")
         }
@@ -86,7 +70,8 @@ class SudokuProcessor: ObservableObject {
                                   height: 1.2 * edgeLength)
 
                 guard let cgCell = cgBoard.cropping(to: rect) else {
-                    fatalError("Cropping failed")
+                    print("Cropping failed")
+                    return nil
                 }
 
                 result.append(UIImage(cgImage: cgCell))

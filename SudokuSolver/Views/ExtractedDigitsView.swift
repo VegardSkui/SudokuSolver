@@ -1,5 +1,5 @@
 //
-//  DigitsView.swift
+//  ExtractedDigitsView.swift
 //  SudokuSolver
 //
 //  Created by Vegard Skui on 13/12/2020.
@@ -8,15 +8,17 @@
 
 import SwiftUI
 
-struct DigitsView: View {
-    @EnvironmentObject var processor: SudokuProcessor
+struct ExtractedDigitsView: View {
+    //@EnvironmentObject var processor: SudokuProcessor
+    let cellImages: [UIImage]
+    let normalizedCellImages: [UIImage]
 
     /// Whether the non cleaned and normalized cells are shown or the originals.
     @State var isShowingUnprocessed = false
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("Digits")
+            Text("Extracted Digits")
                 .font(.headline)
 
             VStack(spacing: 2) {
@@ -25,11 +27,11 @@ struct DigitsView: View {
                         ForEach(0..<9) { j in
                             let index = i*9 + j
                             if isShowingUnprocessed {
-                                Image(uiImage: processor.cellImages[index])
+                                Image(uiImage: cellImages[index])
                                     .resizable()
                                     .frame(width: 40, height: 40)
                             } else {
-                                Image(uiImage: processor.normalizedCellImages[index])
+                                Image(uiImage: normalizedCellImages[index])
                                     .resizable()
                                     .frame(width: 40, height: 40)
                             }

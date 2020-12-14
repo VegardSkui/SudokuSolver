@@ -12,65 +12,121 @@ struct ContentView: View {
     @EnvironmentObject var processor: SudokuProcessor
 
     @State var presentingImagePicker = false
+    @State var presentingDeveloperView = false
 
     @State var image: UIImage?
 
+    @State var message = "Start by opening a photo of a sudoku puzzle"
+
+    @State var isEditable = true
+    @State var cells = [SudokuCell](repeating: SudokuCell(value: 0, isHighlighted: false),
+                                    count: 81)
+
+    @State var isSolved = false
+
     var body: some View {
-        TabView {
-            VStack {
-                Button(action: {
-                    presentingImagePicker = true
-                }) {
-                    HStack {
-                        Image(systemName: "photo")
-                        Text("Open Photo")
-                    }
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+        VStack {
+            Button(action: {
+                presentingImagePicker = true
+            }) {
+                HStack {
+                    Image(systemName: "photo")
+                    Text("Open Photo")
                 }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            }
+            .sheet(isPresented: $presentingImagePicker, onDismiss: processImage, content: {
+                ImagePicker(image: self.$image)
+            })
 
-            }
-            .tabItem {
-                Image(systemName: "plus.square")
-                Text("Open")
-            }
+            Text(message)
+                .padding()
+                .onTapGesture(count: 3) {
+                    self.presentingDeveloperView = true
+                }
+                .sheet(isPresented: $presentingDeveloperView, content: {
+                    DeveloperView()
+                })
 
-            if let board = processor.board {
-                BoardView(original: image!, board: board)
-                    .tabItem {
-                        Image(systemName: "squareshape.split.3x3")
-                        Text("Board")
-                    }
-            }
+            SudokuView(cells: $cells, isEditable: isEditable)
 
-            if processor.hasCellValues {
-                DigitsView()
-                    .tabItem {
-                        Image(systemName: "textformat.123")
-                        Text("Digits")
-                    }
+            if isSolved {
+                Button(action: clear) {
+                    Text("Clear")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+            } else {
+                Button(action: solve) {
+                    Text("Solve")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
             }
-
-            if processor.hasSolution {
-                SolutionView()
-                    .tabItem {
-                        Image(systemName: "checkmark.square")
-                        Text("Solution")
-                    }
-            }
-        }.sheet(isPresented: $presentingImagePicker, onDismiss: processImage, content: {
-            ImagePicker(image: self.$image)
-        })
+        }
     }
 
     func processImage() {
         guard let image = image else { return }
 
+        clear()
+
         DispatchQueue.global(qos: .userInitiated).async {
-            processor.process(image: image)
+            guard let prefilled = processor.process(image: image) else {
+                DispatchQueue.main.async {
+                    self.message = "Could not find sudoku board"
+                }
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.cells = prefilled.map {
+                    SudokuCell(value: $0, isHighlighted: $0 != 0)
+                }
+                self.message = "Input any missing digits or edit wrongly classified digits by tapping a cell"
+                self.isEditable = true
+            }
         }
+    }
+
+    func solve() {
+        // Disable editing while solving
+        self.isEditable = false
+
+        self.message = "Solving"
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            let values = cells.map { $0.value }
+            let solution = SimpleBacktrackingSolver().solve(sudoku: values)
+
+            DispatchQueue.main.async {
+                if solution == nil {
+                    self.message = "The puzzle is unsolvable"
+                    self.isEditable = true
+                } else {
+                    for i in 0..<81 {
+                        self.cells[i].value = solution![i]
+                    }
+                    self.message = "Done!"
+                    self.isSolved = true
+                }
+            }
+        }
+    }
+
+    func clear() {
+        isSolved = false
+        isEditable = true
+        message = "Start by opening a photo of a sudoku puzzle"
+        cells = [SudokuCell](repeating: SudokuCell(value: 0, isHighlighted: false),
+                             count: 81)
     }
 }
 
