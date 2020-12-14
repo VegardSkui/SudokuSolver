@@ -25,7 +25,7 @@ struct BoardView: View {
                     .resizable()
                     .scaledToFit()
             } else {
-                Text("Extracted board")
+                Text("Extracted Board")
                     .font(.headline)
 
                 Image(uiImage: board)
