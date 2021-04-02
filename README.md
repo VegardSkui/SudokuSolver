@@ -4,7 +4,7 @@
 
 ## Setup
 
-Download [OpenCV](https://github.com/opencv/opencv) version 4.5.1 for iOS and
+Download [OpenCV](https://github.com/opencv/opencv) version 4.5.2 for iOS and
 move the `opencv2.framework` bundle into the `Frameworks` folder. You may have
 to build OpenCV yourself to get the Swift bindings to work due to differing
 Swift compiler versions, see [this
