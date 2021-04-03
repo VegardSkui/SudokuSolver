@@ -9,7 +9,11 @@ cd -P -- "$(dirname -- "$0")"
 
 python opencv/platforms/ios/build_framework.py ios \
     --iphoneos_archs arm64 \
-    --iphonesimulator_archs x86_64
+    --iphonesimulator_archs x86_64 \
+    --without calib3d --without dnn --without features2d --without flann \
+    --without gapi --without highgui --without java --without js --without ml \
+    --without objdetect --without photo --without python --without stitching \
+    --without ts --without video --without videoio --without world
 
 rm -rf ../../Frameworks/opencv2.framework
 cp -r ios/opencv2.framework ../../Frameworks
